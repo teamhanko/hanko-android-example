@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Hanko-android-example</string>
+    <string name="continue_label">Continue</string>
+    <string name="email_label">Email</string>
+    <string name="asset_statements" translatable="false">
+        [{
+            \"include\": \"https://your-domain.com/.well-known/assetlinks.json\"
+        }]
+    </string>
+</resources>
