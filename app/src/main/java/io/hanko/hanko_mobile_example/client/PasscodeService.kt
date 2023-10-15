@@ -6,18 +6,17 @@ import io.hanko.hanko_mobile_example.models.PasscodeFinalize
 import io.hanko.hanko_mobile_example.models.PasscodeFinalizeResponse
 import io.hanko.hanko_mobile_example.models.PasscodeInit
 import io.hanko.hanko_mobile_example.models.PasscodeInitResponse
-import io.ktor.client.call.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
+import io.ktor.client.call.receive
+import io.ktor.client.request.post
+import io.ktor.client.request.url
+import io.ktor.client.statement.HttpResponse
 
 interface PasscodeService {
     suspend fun initPasscodeLogin(userId: String): PasscodeInitResponse
     suspend fun finalizePasscodeLogin(id: String, code: String): Pair<PasscodeFinalizeResponse, String?>
 }
 
-class PasscodeServiceImpl() : PasscodeService {
+class PasscodeServiceImpl : PasscodeService {
     private val client by lazy { KtorClient.instance }
     override suspend fun initPasscodeLogin(userId: String): PasscodeInitResponse {
         return client.post {

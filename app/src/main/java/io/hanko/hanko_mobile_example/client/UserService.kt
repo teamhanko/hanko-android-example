@@ -2,8 +2,15 @@ package io.hanko.hanko_mobile_example.client
 
 import io.hanko.hanko_mobile_example.ApiRoutes
 import io.hanko.hanko_mobile_example.KtorClient
-import io.hanko.hanko_mobile_example.models.*
-import io.ktor.client.request.*
+import io.hanko.hanko_mobile_example.models.CreateUser
+import io.hanko.hanko_mobile_example.models.GetUserByEmail
+import io.hanko.hanko_mobile_example.models.Me
+import io.hanko.hanko_mobile_example.models.UserDetailsFromEmail
+import io.hanko.hanko_mobile_example.models.UserModel
+import io.ktor.client.request.get
+import io.ktor.client.request.headers
+import io.ktor.client.request.post
+import io.ktor.client.request.url
 
 interface UserService {
     suspend fun getUserByEmail(email: String): UserDetailsFromEmail
@@ -12,7 +19,7 @@ interface UserService {
     suspend fun me(token: String?): Me
 }
 
-class UserServiceImpl() : UserService {
+class UserServiceImpl : UserService {
     private val client by lazy { KtorClient.instance }
     override suspend fun getUserByEmail(email: String): UserDetailsFromEmail {
         return client.post {

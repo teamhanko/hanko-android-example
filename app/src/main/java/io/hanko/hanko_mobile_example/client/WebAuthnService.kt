@@ -31,8 +31,7 @@ data class FinishWebAuthnRegistration(
     val id: String,
     val rawId: String,
     val type: String,
-    val response: AuthenticatorRegistrationResponse,
-    val transports: Array<String>
+    val response: AuthenticatorRegistrationResponse
 )
 
 @Serializable
@@ -45,7 +44,7 @@ data class FinishWebAuthnAuthentication(
 
 @Serializable
 data class AuthenticatorAuthenticationResponse(
-    val clientDataJson: String,
+    val clientDataJSON: String,
     val authenticatorData: String,
     val signature: String,
     val userHandle: String?
@@ -54,10 +53,12 @@ data class AuthenticatorAuthenticationResponse(
 @Serializable
 data class AuthenticatorRegistrationResponse(
     val clientDataJSON: String,
-    val attestationObject: String
+    val attestationObject: String,
+    val transports: Array<String>,
+    val authenticatorData: String,
 )
 
-class WebAuthnServiceImpl() : WebAuthnService {
+class WebAuthnServiceImpl : WebAuthnService {
     private val client by lazy { KtorClient.instance }
     override suspend fun initWebAuthnRegistration(token: String, userId: String): CreationOptions {
         Log.d("WebAuthnService", "webauth init with token: $token")

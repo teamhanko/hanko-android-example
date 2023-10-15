@@ -7,4 +7,4 @@ import kotlinx.serialization.Serializable
 data class Config(val password: PasswordConfig)
 
 @Serializable
-data class PasswordConfig(val enabled: Boolean, @SerialName("min_password_length") val minPasswordLength: Int)
+data class PasswordConfig(val enabled: Boolean? = null, @SerialName("min_password_length") val minPasswordLength: Int)

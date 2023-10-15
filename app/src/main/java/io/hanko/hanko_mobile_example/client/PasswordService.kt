@@ -6,14 +6,16 @@ import io.hanko.hanko_mobile_example.models.PasswordLogin
 import io.hanko.hanko_mobile_example.models.PasswordLoginResponse
 import io.hanko.hanko_mobile_example.models.SetPassword
 import io.hanko.hanko_mobile_example.models.SetPasswordResponse
-import io.ktor.client.request.*
+import io.ktor.client.request.post
+import io.ktor.client.request.put
+import io.ktor.client.request.url
 
 interface PasswordService {
     suspend fun loginPassword(userId: String, password: String): PasswordLoginResponse
     suspend fun setPassword(userId: String, password: String): SetPasswordResponse
 }
 
-class PasswordServiceImpl() : PasswordService {
+class PasswordServiceImpl : PasswordService {
     private val client by lazy { KtorClient.instance }
     override suspend fun loginPassword(userId: String, password: String): PasswordLoginResponse {
         return client.post {
