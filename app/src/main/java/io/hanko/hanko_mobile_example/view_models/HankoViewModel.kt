@@ -5,10 +5,23 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
-import io.hanko.hanko_mobile_example.client.*
-import io.hanko.hanko_mobile_example.models.*
+import io.hanko.hanko_mobile_example.client.ConfigService
+import io.hanko.hanko_mobile_example.client.ConfigServiceImpl
+import io.hanko.hanko_mobile_example.client.PasscodeService
+import io.hanko.hanko_mobile_example.client.PasscodeServiceImpl
+import io.hanko.hanko_mobile_example.client.PasswordService
+import io.hanko.hanko_mobile_example.client.PasswordServiceImpl
+import io.hanko.hanko_mobile_example.client.UserService
+import io.hanko.hanko_mobile_example.client.UserServiceImpl
+import io.hanko.hanko_mobile_example.models.Config
+import io.hanko.hanko_mobile_example.models.PasscodeFinalizeResponse
+import io.hanko.hanko_mobile_example.models.PasscodeInitResponse
+import io.hanko.hanko_mobile_example.models.PasswordLoginResponse
+import io.hanko.hanko_mobile_example.models.SetPasswordResponse
+import io.hanko.hanko_mobile_example.models.UserDetailsFromEmail
+import io.hanko.hanko_mobile_example.models.UserModel
 
-class HankoViewModel() : ViewModel() {
+class HankoViewModel : ViewModel() {
     private val userService: UserService by lazy { UserServiceImpl() }
     private val configService: ConfigService by lazy { ConfigServiceImpl() }
     private val passcodeService: PasscodeService by lazy { PasscodeServiceImpl() }

@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "io.hanko.hanko_mobile_example"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -73,4 +73,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+    implementation("androidx.credentials:credentials:1.2.0-rc01")
+    // optional - needed for credentials support from play services, for devices running
+    // Android 13 and below.
+    implementation("androidx.credentials:credentials-play-services-auth:1.2.0-rc01")
 }
